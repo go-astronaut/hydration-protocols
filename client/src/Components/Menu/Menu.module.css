@@ -1,0 +1,54 @@
+.menu-icon {
+  fill: rgba(3, 4, 94, 0.8);
+  width: 3rem;
+  position: fixed;
+  right: 0.85rem;
+  top: 0.85rem;
+  background-color: rgba(202, 240, 248, 0.8);
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+  z-index: 1000;
+}
+
+.icon {
+  width: 1rem;
+  margin-right: 1rem;
+  fill: rgba(0, 119, 182, 0.8);
+}
+
+.menu-icon:hover {
+  fill: rgba(0, 119, 182, 0.8);
+}
+
+.menu-button {
+  font-size: 1.25rem;
+  font-weight: 400;
+  color: rgba(87, 87, 87, 0.7);
+  text-align: left;
+  padding: 1.25rem 2rem;
+  border: none;
+  background: none;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.menu-button:hover {
+  color: #023e8a;
+  background: rgba(87, 87, 87, 0.1);
+}
+
+.language-selection {
+  position: absolute;
+  bottom: 2rem;
+  right: 6rem;
+}
+
+@media (max-width: 48em) {
+  .menu-icon {
+    width: 2.75rem;
+  }
+}

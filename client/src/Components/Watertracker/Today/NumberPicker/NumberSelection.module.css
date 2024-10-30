@@ -1,0 +1,25 @@
+.container-number-picker {
+  display: flex;
+  flex-direction: column;
+}
+
+.container-number-picker {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 0 3.5rem;
+}
+
+.measuring-unit {
+  font-size: 1rem;
+  padding-left: 1rem;
+}
+
+.header {
+  font-size: 1.125rem;
+  text-align: center;
+  font-weight: 350;
+  padding: 0 1rem;
+  margin-bottom: 0.75rem;
+}

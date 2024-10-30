@@ -1,0 +1,48 @@
+.container {
+  width: 100%;
+  height: 21rem;
+}
+
+.title {
+  font-size: 1.25rem;
+  font-weight: 370;
+  text-align: center;
+}
+
+.title-container {
+  height: 15%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.chart-container {
+  height: 85%;
+}
+
+@media (max-width: 48em) {
+  .title {
+    margin-top: 0.5rem;
+  }
+}
+
+/** 37.48em = 599px */
+@media (max-width: 37.48em) {
+  .container {
+    /* 636px=39.75rem */
+    height: 39.75rem;
+  }
+  .title-container {
+    height: 10%;
+  }
+  .chart-container {
+    height: 90%;
+    padding-bottom: 1.75rem;
+  }
+  .loading-container {
+    height: 34rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}

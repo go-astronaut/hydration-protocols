@@ -1,0 +1,40 @@
+.info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.8rem;
+  font-weight: 400;
+  color: rgba(77, 77, 77, 0.8);
+}
+
+.circle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 1.75rem;
+  width: 1.75rem;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.7);
+  margin-top: 0.25rem;
+  margin-bottom: 0.35rem;
+}
+
+.info svg {
+  height: 1rem;
+  width: 1rem;
+  fill: rgb(117, 117, 117);
+}
+
+.highlight {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: rgba(77, 77, 77, 0.8);
+}
+
+/** 37.48em = 599px */
+@media (max-width: 37.48em) {
+  .info {
+    margin-bottom: 1rem;
+  }
+}

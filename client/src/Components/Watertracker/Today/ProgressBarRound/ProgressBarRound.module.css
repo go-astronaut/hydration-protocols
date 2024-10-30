@@ -1,0 +1,27 @@
+.progress-bar {
+  position: relative;
+  width: 12rem;
+  height: 12rem;
+  border-radius: 50%;
+  margin: 0;
+}
+
+.text-numbers-bottom {
+  font-size: 1.25rem;
+  line-height: 1.5rem;
+}
+
+.text-wrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: rgb(77, 77, 77);
+  font-weight: 350;
+  text-align: center;
+}
+
+.text-numbers-top {
+  font-size: 2.5rem;
+  line-height: 2.5rem;
+}

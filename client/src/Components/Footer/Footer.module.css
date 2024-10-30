@@ -1,0 +1,26 @@
+.wrapper {
+  background-color: rgba(202, 240, 248, 0.5);
+  height: 5rem;
+}
+
+.message {
+  font-size: 1.125rem;
+  font-weight: 400;
+  color: rgba(77, 77, 77, 0.8);
+  text-align: center;
+}
+
+.copyright {
+  font-size: 0.8rem;
+  text-align: center;
+  font-weight: 350;
+}
+
+@media (max-width: 62em) {
+  .message {
+    font-size: 0.9rem;
+  }
+  .copyright {
+    font-size: 0.7rem;
+  }
+}

@@ -1,0 +1,40 @@
+html {
+  /* font-size: 62.5%; */
+}
+
+@font-face {
+  font-family: "Noto Sans";
+  src: url("./Assets/NotoSans-VariableFont_wdth\,wght.ttf") format("truetype");
+}
+
+body {
+  margin: 0;
+  font-family: "Noto Sans", "Helvetica Neue", Arial, sans-serif;
+  font-size: 1.5rem;
+  line-height: 1.5;
+  color: rgb(77, 77, 77);
+  text-align: left;
+  background-color: #ffffff;
+  user-select: none;
+}
+
+link,
+button {
+  font-family: "Noto Sans", "Helvetica Neue", Arial, sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  color: rgb(77, 77, 77);
+}
