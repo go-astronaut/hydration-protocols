@@ -1,0 +1,48 @@
+.container {
+  height: 21rem;
+  width: 100%;
+}
+
+.title {
+  padding-top: 0;
+  font-size: 1.25rem;
+  font-weight: 370;
+  text-align: center;
+}
+
+.chart-container {
+  height: 16.5rem;
+}
+
+/**
+* 64em = 1024px
+*/
+@media (max-width: 64em) {
+  .title {
+    padding-top: 0.625rem;
+  }
+}
+
+/**
+* 74.96em = 1199.36px
+*/
+@media (max-width: 74.96em) {
+  .chart-container {
+    height: 17rem;
+  }
+}
+
+/** 37.48em = 599px */
+@media (max-width: 37.48em) {
+  .container {
+    /* 636px = 39.75rem */
+    height: 39.75rem;
+  }
+
+  .loading-container {
+    height: 34rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}

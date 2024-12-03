@@ -2,6 +2,7 @@ import { COLOR_PALETTE } from "../../Constants";
 import { Month, SingleDayData } from "../../Types/WaterTracker.types";
 import { generateRandomRGB } from "../../Utils/Color.utils";
 import {
+  formatDateToString,
   formatStringToDate,
   getDaysInMonth,
   getTimeNavigationIndexes,
@@ -37,8 +38,8 @@ function getWeekNumber(date: Date): number {
  */
 function getMonthStats(month: Month) {
   const now = new Date();
-  const dateStr = Object.keys(month)[0];
-  const givenMonth = formatStringToDate(dateStr, "MM-YYYY");
+  const monthIndex = Object.keys(month)[0];
+  const givenMonth = formatStringToDate(monthIndex, "MM-YYYY");
   const isCurrentMonth =
     now.getFullYear() === givenMonth.getFullYear() &&
     now.getMonth() === givenMonth.getMonth();
@@ -77,8 +78,12 @@ function getMonthStats(month: Month) {
   // iterate over all days in a month and find the sum, counter and max amount
   for (const week of weeksArr) {
     for (const day of week) {
-      // if activity property is not defined then continue with the next iteration
-      if (day.activity) {
+      /* Check if activity property is not defined and
+       * if month index of the day matches with the given month to exclude previous and next month data
+       */
+      const dayDate = formatStringToDate(day.date, "DD.MM.YYYY");
+      const currentMonth = formatDateToString(dayDate, "MM-YYYY");
+      if (currentMonth === monthIndex && day.activity) {
         // get daily sum of all daily amounts
         const dailySum = getDailyAmountSum(day);
         sum += dailySum;
@@ -197,18 +202,25 @@ function getDailyAmountSum(day: SingleDayData) {
 }
 
 /**
- * get day from month data
+ * Get day from month data
  * @param month month data object
  * @param date date object
  */
 function getDayFromMonth(month: Month | null, date: Date) {
   if (!month) return null;
 
-  // get time navigation indexes
-  const { monthIndex, weekIndex, weekday } = getTimeNavigationIndexes(date);
+  // Time navigation indexes
+  const { weekday } = getTimeNavigationIndexes(date);
+  const dateStr = formatDateToString(date, "DD.MM.YYYY");
 
-  // get day from month data
-  const day = month?.[monthIndex]?.[weekIndex]?.[weekday];
+  // Weeks objects from month
+  const monthObj = Object.values(month)[0];
+  // Extract values from weeks object
+  const weeksArr = Object.values(monthObj);
+  // Find the needed week and point at the weekday to get the day data
+  const day = weeksArr
+    .find((week) => week[weekday].date === dateStr)
+    ?.at(weekday);
 
   if (!day) return null;
   return day;

@@ -21,6 +21,9 @@ enum ErrorMessages {
   invalidTypeProperty = "Invalid type provided",
   invalidLanguageParameter = "Invalid language parameter",
   notSupported = "Invalid language parameter provided",
+  typeRequired = "Type is required",
+  amountRequired = "Amount is required",
+  valuesNotFound = "Values not found",
 }
 
 export { ErrorMessages };

@@ -3,27 +3,8 @@
   height: 21rem;
 }
 
-.title {
-  font-size: 1.25rem;
-  font-weight: 370;
-  text-align: center;
-}
-
-.title-container {
-  height: 15%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
 .chart-container {
   height: 85%;
-}
-
-@media (max-width: 48em) {
-  .title {
-    margin-top: 0.5rem;
-  }
 }
 
 /** 37.48em = 599px */
@@ -31,9 +12,6 @@
   .container {
     /* 636px=39.75rem */
     height: 39.75rem;
-  }
-  .title-container {
-    height: 10%;
   }
   .chart-container {
     height: 90%;

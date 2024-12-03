@@ -4,11 +4,6 @@ import { MonthIndex } from "../../../Types/Global.types";
 import { AppDispatch } from "../../../Reducers/Store";
 import { getHeaders } from "../../../Utils/Request.utils";
 import { getMonthData } from "../../../Reducers/WaterTracker/WaterTracker.thunks";
-import {
-  setSelectedMonth,
-  setSelectedYear,
-  setTimeTraverse,
-} from "../../../Reducers";
 
 /**
  * load month data based on year and month
@@ -44,11 +39,6 @@ const useLoadMonthData = () => {
         headers: headers,
       })
     );
-
-    // set selected month and year indexes in redux
-    dispatch(setSelectedMonth(monthIndex));
-    dispatch(setSelectedYear(year));
-    dispatch(setTimeTraverse({ year, month: monthIndex }));
   };
 
   return { loadMonth };

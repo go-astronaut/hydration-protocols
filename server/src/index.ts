@@ -21,8 +21,7 @@ const corsOptions: cors.CorsOptions = {
       callback(new Error("Not allowed by CORS"));
     }
   },
-  // For legacy browser support
-  optionsSuccessStatus: HTTPStatusCodes.OK,
+  optionsSuccessStatus: HTTPStatusCodes.OK, // For legacy browser support
 };
 
 app.use(express.json());

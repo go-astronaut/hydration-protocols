@@ -4,6 +4,7 @@ import { setDay } from "./Utilities/Setters/SetDayData";
 import { setDailyGoal } from "./Utilities/Setters/SetDailyGoal";
 import { resetLastAmountAction } from "./Utilities/Setters/ResetLastAmountAction";
 import { setControlValues } from "./Utilities/Setters/SetControlValues";
+import { setControlsAmountAndType } from "./Utilities/Setters/SetAmountAndType";
 
 const waterTrackerSetController = {
   /**
@@ -48,6 +49,13 @@ const waterTrackerSetController = {
    * @param res - updated control values
    */
   setControlValues,
+
+  /**
+   * set controls amount and type
+   * @param req - Controls { amount: number, type: string }
+   * @param res - updated control values
+   */
+  setControlsAmountAndType,
 };
 
 export default waterTrackerSetController;

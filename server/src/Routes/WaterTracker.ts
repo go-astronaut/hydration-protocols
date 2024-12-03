@@ -36,12 +36,6 @@ waterTrackerRoutes.put(
 );
 
 waterTrackerRoutes.put(
-  "/set-control-value",
-  userController.verifyToken,
-  waterTrackerSetController.setControlValue
-);
-
-waterTrackerRoutes.put(
   "/set-day-data",
   userController.verifyToken,
   waterTrackerSetController.setDay
@@ -59,10 +53,25 @@ waterTrackerRoutes.put(
   waterTrackerSetController.resetLastAmountAction
 );
 
+// Set control values: amount and type. Goal and date are binded to the day data
 waterTrackerRoutes.put(
   "/set-control-values",
   userController.verifyToken,
   waterTrackerSetController.setControlValues
+);
+
+// Update one of the control values
+waterTrackerRoutes.put(
+  "/set-control-value",
+  userController.verifyToken,
+  waterTrackerSetController.setControlValue
+);
+
+// Set controls: amount and type
+waterTrackerRoutes.put(
+  "/set-controls-amount-and-type",
+  userController.verifyToken,
+  waterTrackerSetController.setControlsAmountAndType
 );
 
 export default waterTrackerRoutes;

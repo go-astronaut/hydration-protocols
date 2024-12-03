@@ -1,9 +1,10 @@
-import { useAmountController } from "./TodayController.hook";
+import { useTodayController } from "./TodayController.hook";
+import { StatusCircle } from "../StatusCircle/StatusCircle";
 import classes from "./TodayController.module.css";
-import ProgressBarRound from "../ProgressBarRound/ProgressBarRound";
 
 interface AmountControllerProps {
   openControlEdit: () => void;
+  openDrinkModal: () => void;
 }
 
 /**
@@ -11,14 +12,22 @@ interface AmountControllerProps {
  */
 const TodayController: React.FC<AmountControllerProps> = ({
   openControlEdit,
+  openDrinkModal,
 }) => {
-  const amountController = useAmountController();
+  const amountController = useTodayController();
 
   /**
-   * handle opening the edit dialog
+   * Handle opening the edit dialog
    */
   const openModal = () => {
     openControlEdit();
+  };
+
+  /**
+   * Handle opening the drink modal
+   */
+  const handleOpenDrinkModal = () => {
+    openDrinkModal();
   };
 
   const leftSide = amountController.showButton && (
@@ -56,7 +65,7 @@ const TodayController: React.FC<AmountControllerProps> = ({
   const rightSide = amountController.today && (
     <div className={classes["right"]}>
       <button
-        onClick={amountController.drinkAmount}
+        onClick={handleOpenDrinkModal}
         className={`${classes["drink-button"]} ${classes["button"]}`}
       >
         <svg
@@ -86,15 +95,12 @@ const TodayController: React.FC<AmountControllerProps> = ({
   );
 
   return (
-    <div className={classes["watertracker_day-controls-item"]}>
-      <ProgressBarRound
-        day={amountController.today}
-        month={amountController.month}
-      />
+    <div className={`${classes["watertracker_day-controls-item"]}`}>
+      <StatusCircle day={amountController.today} />
       {rightSide}
       {leftSide}
     </div>
   );
 };
 
-export default TodayController;
+export { TodayController };

@@ -13,7 +13,7 @@ import {
 } from "@mui/material";
 import LoadingOverlay from "../../Overlays/LoadingOverlay/LoadingOverlay";
 import { buttonStyles } from "../../../Constants";
-import RoutesValues from "../../../Routes/Routes.enums";
+import RoutesValues from "../../../Routes/Routes.values";
 import { boxStyles } from "../Athentication.constants";
 import classes from "../Authentication.module.css";
 

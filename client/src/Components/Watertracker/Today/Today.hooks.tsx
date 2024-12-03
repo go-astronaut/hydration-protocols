@@ -1,4 +1,5 @@
 import React from "react";
+import { useScreenWidth } from "../../../Providers/ScreenWidth";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../Reducers/Store";
 import { COLOR_PALETTE, TODAY } from "../../../Constants";
@@ -9,11 +10,10 @@ import {
   getWeekFromDate,
 } from "../../../Utils/Time.utils";
 import { generateRandomRGB } from "../../../Utils/Color.utils";
-import { useScreenWidth } from "../../Providers/ScreenWidth";
 import { BREAKPOINT_SLIDER } from "../DataToView/Day/Charts/Charts.constants";
 import { useTranslation } from "react-i18next";
 
-const useTodayController = () => {
+const useToday = () => {
   // get translations
   const { t } = useTranslation();
   const translations = {
@@ -70,8 +70,25 @@ const useTodayController = () => {
   const amount = controls.amount !== null ? controls.amount : 0;
   const type = controls.type ? controls.type : "there is nothing yet";
 
-  // show the goal edit dialog
+  // Show drink modal
   const [showControlEdit, setControlEdit] = React.useState(false);
+
+  // Drink modal local state
+  const [drinkModal, setDrinkModal] = React.useState(false);
+
+  /**
+   * Open the drink modal
+   */
+  const openDrinkModal = () => {
+    setDrinkModal(true);
+  };
+
+  /**
+   * Close the drink modal
+   */
+  const closeDrinkModal = () => {
+    setDrinkModal(false);
+  };
 
   /**
    * Cancel the goal edit dialog
@@ -125,7 +142,12 @@ const useTodayController = () => {
     handlePrevClick,
     closeEdit,
     openEdit,
+    drink: {
+      drinkModal,
+      openDrinkModal,
+      closeDrinkModal,
+    },
   };
 };
 
-export { useTodayController };
+export { useToday };

@@ -1,19 +1,20 @@
 .container {
   position: relative;
+  min-height: calc(100vh - 6.5rem);
 }
 
 .lg-container {
-  background: #8ecae6;
   margin: 1rem;
   border-radius: 0.5rem;
   position: relative;
   padding: 0.125rem;
-  min-height: calc(100vh - 7rem);
+  background: rgba(142, 202, 230, 0.7);
+  box-shadow: 0 0.1rem 0.1rem 0 rgba(60, 64, 67, 0.3),
+    0 0.1rem 0.2rem 0.1rem rgba(60, 64, 67, 0.15);
 }
 
 .progress-bar-container {
-  height: fit-content;
-  padding: 1.5rem 0;
+  height: 21rem;
 }
 
 .title {
@@ -27,7 +28,7 @@
   position: absolute;
   top: 1rem;
   left: 1rem;
-  background-color: rgba(3, 4, 94, 0.3);
+  background-color: rgb(114, 149, 190);
   border-radius: 50%;
   width: 2rem;
   height: 2rem;
@@ -48,7 +49,9 @@
 }
 
 .slide {
-  background-color: #8ecae6;
+  background: rgba(142, 202, 230, 0.7);
+  box-shadow: 0 0.1rem 0.1rem 0 rgba(60, 64, 67, 0.3),
+    0 0.1rem 0.2rem 0.1rem rgba(60, 64, 67, 0.15);
   border-radius: 0.5rem;
   margin: 0.5rem;
 }

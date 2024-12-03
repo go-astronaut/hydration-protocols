@@ -1,7 +1,8 @@
 import React from "react";
+import { v4 } from "uuid";
+import { useTranslation } from "react-i18next";
 import { CircularProgress, Divider, List, ListItem } from "@mui/material";
 import { OverlayScrollbars } from "overlayscrollbars";
-import { v4 } from "uuid";
 import classes from "./Charts.module.css";
 
 const ChartIsLoading: React.FC = () => {
@@ -65,29 +66,40 @@ interface ChartLegendListProps {
 }
 
 const ChartLegendList: React.FC<ChartLegendListProps> = ({ data }) => {
-  const content = data.map((item, index, arr) => {
-    return (
-      <React.Fragment key={v4()}>
-        <ListItem>
-          <div
-            className={`${classes["color-box"]}`}
-            style={{ backgroundColor: item.color }}
-          ></div>
-          <span>{item.label}</span>
-        </ListItem>
-        {index < arr.length - 1 && (
-          <Divider
-            orientation={"horizontal"}
-            variant={"middle"}
-            component={"li"}
-          />
-        )}
-      </React.Fragment>
-    );
-  });
+  // Get translations
+  const { t } = useTranslation();
+  const ml = t("measuringUnits.ml");
+
+  const list = (
+    <List className={`${classes["list"]}`}>
+      {data.map((item, index, arr) => (
+        <React.Fragment key={v4()}>
+          <ListItem className={`${classes["list-item"]}`}>
+            <div className={`${classes["type-container"]}`}>
+              <div
+                className={`${classes["color-box"]}`}
+                style={{ backgroundColor: item.color }}
+              ></div>
+              <span>{item.label}</span>
+            </div>
+
+            <span>{`${item.value} ${ml}`}</span>
+          </ListItem>
+          {index < arr.length - 1 && (
+            <Divider
+              orientation={"horizontal"}
+              variant={"middle"}
+              component={"li"}
+            />
+          )}
+        </React.Fragment>
+      ))}
+    </List>
+  );
+
   return (
     <ScrollableContainer>
-      <List className={`${classes["list"]}`}>{content}</List>
+      <div className={`${classes["list__background"]}`}>{list}</div>
     </ScrollableContainer>
   );
 };

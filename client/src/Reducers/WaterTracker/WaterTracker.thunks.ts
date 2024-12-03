@@ -52,7 +52,6 @@ const createMonthData = createAsyncThunk<
  * For editing use editDailyValue.
  *
  * DailyValues { date: string; valueType: ControlKeys; value: number; }
- *
  */
 const setDayData = createAsyncThunk<
   types.SingleDayData | null,
@@ -112,7 +111,7 @@ const setControlValue = createAsyncThunk<
 });
 
 /**
- * Async thunk for setting a control values
+ * Async thunk for setting control values: amount and type. Date and goal are day data related.
  */
 const setControlValues = createAsyncThunk<
   types.ControlUpdater | null,
@@ -124,6 +123,21 @@ const setControlValues = createAsyncThunk<
     headers
   );
   return response.data as types.ControlUpdater | null;
+});
+
+/**
+ * Async thunk for setting a control value
+ */
+const setControlsAmountAndType = createAsyncThunk<
+  types.Controls | null,
+  { payloadData: { amount: number; type: string }; headers: HeadersReq }
+>("data/setControlsAmountAndType", async ({ payloadData, headers }) => {
+  const response = await axios.put(
+    `${vars.BACK_END_WATER_TRACKER}/set-controls-amount-and-type/`,
+    payloadData,
+    headers
+  );
+  return response.data as types.Controls | null;
 });
 
 /**
@@ -192,4 +206,5 @@ export {
   resetLastDrink,
   setControlValue,
   setControlValues,
+  setControlsAmountAndType,
 };

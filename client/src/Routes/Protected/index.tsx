@@ -1,7 +1,7 @@
 import { useAuth } from "../../Hooks/Auth";
 import { Navigate } from "react-router-dom";
 import { LoadingPage } from "../../Pages/App.pages";
-import RoutesValues from "../Routes.enums";
+import RoutesValues from "../Routes.values";
 
 interface ProtectedRouteProps {
   element: React.ReactElement;
@@ -12,6 +12,7 @@ interface ProtectedRouteProps {
  * @param element - The element to be rendered if the user is authenticated
  */
 const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ element }) => {
+  // Get data from useAuth hook
   const { currentUser, userIsLoading } = useAuth();
 
   // if the user is not loaded yet, show the loading screen

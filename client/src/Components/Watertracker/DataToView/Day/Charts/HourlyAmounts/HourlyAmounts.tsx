@@ -1,14 +1,17 @@
 import React from "react";
+import moment from "moment";
 import { useSelector } from "react-redux";
-import { RootState } from "../../../../../../Reducers/Store";
-import { useScreenWidth } from "../../../../../Providers/ScreenWidth";
+import { useScreenWidth } from "../../../../../../Providers/ScreenWidth";
 import { useTranslation } from "react-i18next";
+import { Grid } from "@mui/material";
 import { BarChart } from "@mui/x-charts";
 import { ChartIsLoading, NoData } from "../Charts";
 import { getDailyAmountSum } from "../../../../WaterTracker.utils";
 import { BREAKPOINT_SLIDER, sx } from "../Charts.constants";
 import { SingleDayData } from "../../../../../../Types/WaterTracker.types";
+import { RootState } from "../../../../../../Reducers/Store";
 import classes from "./HourlyAmounts.module.css";
+import classesChart from "../Charts.module.css";
 
 interface HourlyAmountsProps {
   day: SingleDayData | null;
@@ -69,6 +72,11 @@ const HourlyAmounts: React.FC<HourlyAmountsProps> = ({ day }) => {
             dataKey: "hour",
             label: `${translations.hours}`,
             disableTicks: true,
+            valueFormatter: (code, context) => {
+              return context.location === "tick"
+                ? `${code}`
+                : moment(`${code}`, "H").format("HH:mm").toString();
+            },
           },
         ]}
         series={[
@@ -102,6 +110,11 @@ const HourlyAmounts: React.FC<HourlyAmountsProps> = ({ day }) => {
               transform: "rotate(0deg) translate(1.5rem, calc(-50%  + 2.5rem))",
             },
             disableTicks: true,
+            valueFormatter: (code, context) => {
+              return context.location === "tick"
+                ? `${code}`
+                : moment(`${code}`, "H").format("HH:mm").toString();
+            },
           },
         ]}
         series={[{ dataKey: "amount" }]}
@@ -117,25 +130,34 @@ const HourlyAmounts: React.FC<HourlyAmountsProps> = ({ day }) => {
 
   const chartContent =
     amountSum > 0 ? (
-      chartEl
+      <div className={`${classesChart["chart-container"]}`}>{chartEl}</div>
     ) : (
       <NoData emptyMessage={translations.emptyMessage} />
     );
-  const chart =
-    contentIsLoading || initialLoading ? (
-      <div className={classes["loading-container"]}>
-        <ChartIsLoading />
-      </div>
-    ) : (
-      chartContent
-    );
+
+  // boolean for activating loading spinner
+  const isLoading = contentIsLoading || initialLoading;
+
+  const chart = isLoading ? (
+    <div className={classes["loading-container"]}>
+      <ChartIsLoading />
+    </div>
+  ) : (
+    chartContent
+  );
 
   return (
-    <div className={`${classes["container"]}`}>
-      <div className={`${classes["title-container"]}`}>
-        <h3 className={classes["title"]}>{translations.title}</h3>
-      </div>
-      <div className={`${classes["chart-container"]}`}>{chart}</div>
+    <div className={`${classesChart["container"]}`}>
+      <Grid container>
+        <Grid item xs={12}>
+          <div className={`${classesChart["title-container"]}`}>
+            <h3 className={`${classesChart["title"]}`}>{translations.title}</h3>
+          </div>
+        </Grid>
+        <Grid item xs={12}>
+          {chart}
+        </Grid>
+      </Grid>
     </div>
   );
 };

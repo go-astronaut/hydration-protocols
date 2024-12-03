@@ -1,8 +1,7 @@
-import React from "react";
 import { useDay } from "./Day.hook";
 import { Grid, Skeleton } from "@mui/material";
 import { MobileSlider } from "./MobileSlider/MobileSlider";
-import ProgressBarRound from "../../Today/ProgressBarRound/ProgressBarRound";
+import { StatusCircle } from "../../Today/StatusCircle/StatusCircle";
 import NotFound from "../../../404/NotFound";
 import { HourlyTypes } from "./Charts/HourlyTypes/HourlyTypes";
 import { LiquidTypes } from "./Charts/LiquidTypes/LiquidTypes";
@@ -13,7 +12,7 @@ import classes from "./Day.module.css";
 /**
  * Component to display single day data
  */
-const Day = () => {
+const Day: React.FC = () => {
   const day = useDay();
 
   const slides = [
@@ -25,22 +24,22 @@ const Day = () => {
           <h3 className={`${classes["title"]}`}>
             {day.data?.date ? day.data.date : ""}
           </h3>
-          <ProgressBarRound day={day.data} month={day.month} />
+          <StatusCircle day={day.data} />
         </div>
       </div>
     </div>,
     <div key={v4()}>
-      <div className={`${classes["slide"]}`}>
+      <div className={`${classes["slide"]}`} key={v4()}>
         <HourlyAmounts day={day.data} />
       </div>
     </div>,
     <div key={v4()}>
-      <div className={`${classes["slide"]}`}>
+      <div className={`${classes["slide"]}`} key={v4()}>
         <HourlyTypes colors={day.COLORS} day={day.data} />
       </div>
     </div>,
     <div key={v4()}>
-      <div className={`${classes["slide"]}`}>
+      <div className={`${classes["slide"]}`} key={v4()}>
         <LiquidTypes colors={day.COLORS} day={day.data} />
       </div>
     </div>,
@@ -62,7 +61,7 @@ const Day = () => {
           ) : (
             <h3 className={`${classes["title"]}`}>{day.title}</h3>
           )}
-          <ProgressBarRound day={day.data} month={day.month} />
+          <StatusCircle day={day.data} />
         </div>
       </Grid>
       <Grid item lg={6} xs={12}>
@@ -98,9 +97,11 @@ const Day = () => {
       <MobileSlider slides={slides} />
     </div>
   ) : (
-    <div className={`${classes["lg-container"]}`}>
-      {button}
-      {allChartsView}
+    <div className={`${classes["container"]}`}>
+      <div className={`${classes["lg-container"]}`}>
+        {button}
+        {allChartsView}
+      </div>
     </div>
   );
 

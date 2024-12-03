@@ -8,9 +8,6 @@ export { default as createUser } from "./User/User.utils";
 export {
   default as WaterTracker,
   setLoading,
-  setTimeTraverse,
-  setSelectedMonth,
-  setSelectedYear,
   setDrinkAmount,
   setControls,
   setContentIsLoading,

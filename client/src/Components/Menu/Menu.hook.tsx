@@ -9,7 +9,8 @@ import { getDayFromMonth } from "../Watertracker/WaterTracker.utils";
 import { getMonthData } from "../../Reducers/WaterTracker/WaterTracker.thunks";
 import { getHeaders } from "../../Utils/Request.utils";
 import { AppDispatch, RootState } from "../../Reducers/Store";
-import RoutesValues from "../../Routes/Routes.enums";
+import { formatDateToString } from "../../Utils/Time.utils";
+import RoutesValues from "../../Routes/Routes.values";
 
 enum Languages {
   en = "EN",
@@ -18,11 +19,10 @@ enum Languages {
 }
 
 const useMenu = () => {
-  const { month, timeTraverse } = useSelector(
-    (state: RootState) => state.waterTracker
-  );
+  const { month } = useSelector((state: RootState) => state.waterTracker);
   const { currentUser } = useAuth();
 
+  // Set state for language buttons
   const [language, setLanguage] = React.useState(
     // get language upper case signature from i18next
     i18next.language.split("-")[0].toLocaleUpperCase()
@@ -37,7 +37,7 @@ const useMenu = () => {
     logout: t("menu.logout"),
   };
 
-  // dispatch for managing states
+  // Get dispatch for managing states
   const dispatch = useDispatch<AppDispatch>();
 
   // location for displaying the neccessary menu items
@@ -90,9 +90,14 @@ const useMenu = () => {
   };
 
   // navigate to archive page
-  const navigateToTimeTraverse = async () => {
+  const navigateToArchive = async () => {
+    // set time traverse values
+    const now = new Date();
+    const yearIndex = now.getFullYear();
+    const monthIndex = now.getMonth();
+
     // get month data if it's neccessary
-    const today = new Date(timeTraverse.year, timeTraverse.month, 1);
+    const today = new Date(yearIndex, monthIndex, 1);
     const match = getDayFromMonth(month, today)?.date;
     if (!match && currentUser) {
       // get user token and headers
@@ -102,22 +107,26 @@ const useMenu = () => {
       // dispatch get month action
       await dispatch(
         getMonthData({
-          year: timeTraverse.year,
-          month: timeTraverse.month,
+          year: yearIndex,
+          month: monthIndex,
           headers,
         })
       );
     }
 
-    // navigate to time traverse page
-    navigate(RoutesValues.monthTraverse);
+    // navigate to archive
+    navigate(`${RoutesValues.archive}/${formatDateToString(now, "MM-YYYY")}`);
   };
 
-  // navigate to current month page
-  const navigateToCurrentMonth = async () => {
+  // navigate to tracker
+  const navigateToTracker = async () => {
     // get month data if it's neccessary
     const today = new Date();
     const match = getDayFromMonth(month, today)?.date;
+
+    // navigate to tracker page
+    navigate(RoutesValues.tracker);
+
     if (!match && currentUser) {
       // get user token and headers
       const token = await currentUser.getIdToken();
@@ -132,9 +141,6 @@ const useMenu = () => {
         })
       );
     }
-
-    // navigate to current month page
-    navigate(RoutesValues.currentMonth);
   };
 
   /**
@@ -170,8 +176,8 @@ const useMenu = () => {
     translations,
     Languages,
     language,
-    navigateToTimeTraverse,
-    navigateToCurrentMonth,
+    navigateToArchive,
+    navigateToTracker,
     handleLogout,
     handleDrawerOpen,
     handleDrawerClose,

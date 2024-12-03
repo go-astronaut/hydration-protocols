@@ -2,7 +2,7 @@ import React from "react";
 import { Provider } from "react-redux";
 import AppRoutes from "./Routes/Routes";
 import AuthProvider from "./Hooks/Auth";
-import ScreenWidthProvider from "./Components/Providers/ScreenWidth";
+import ScreenWidthProvider from "./Providers/ScreenWidth";
 import { ThemeProvider } from "@mui/material";
 import store from "./Reducers/Store";
 import theme from "./Theme/theme";

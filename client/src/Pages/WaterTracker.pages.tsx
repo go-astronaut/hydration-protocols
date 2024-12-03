@@ -1,19 +1,19 @@
 import { Container } from "@mui/material";
 import Menu from "../Components/Menu/Menu";
-import { MonthTraverse } from "../Components/Watertracker/MonthTraverse/MonthTraverse";
+import { Archive } from "../Components/Watertracker/Archive/Archive";
 import Footer from "../Components/Footer/Footer";
-import { CurrentMonth } from "../Components/Watertracker/CurrentMonth/CurrentMonth";
+import { Tracker } from "../Components/Watertracker/Tracker/Tracker";
 import { Day } from "../Components/Watertracker/DataToView/Day/Day";
 
 /**
  * Water Tracker Page
  */
-const TimeTraversePage = () => {
+const ArchivePage = () => {
   return (
     <>
       <Menu />
       <Container fixed disableGutters>
-        <MonthTraverse />
+        <Archive />
       </Container>
       <Footer />
     </>
@@ -25,7 +25,7 @@ const CurrentMonthPage = () => {
     <>
       <Menu />
       <Container fixed disableGutters>
-        <CurrentMonth />
+        <Tracker />
       </Container>
       <Footer />
     </>
@@ -44,4 +44,4 @@ const DayPage = () => {
   );
 };
 
-export { TimeTraversePage, CurrentMonthPage, DayPage };
+export { ArchivePage, CurrentMonthPage, DayPage };

@@ -69,13 +69,13 @@ const useWeek = (week: Array<SingleDayData> | null) => {
     title: week ? t("week.title", { weekStart, weekEnd }) : t("timeUnits.week"),
     // week days shortened names for x axis
     weekdayNameShorts: [
-      t("timeUnits.weekShorts.mon"),
-      t("timeUnits.weekShorts.tue"),
-      t("timeUnits.weekShorts.wed"),
-      t("timeUnits.weekShorts.thu"),
-      t("timeUnits.weekShorts.fri"),
-      t("timeUnits.weekShorts.sat"),
-      t("timeUnits.weekShorts.sun"),
+      t("timeUnits.abbreviations.weekdays.mon"),
+      t("timeUnits.abbreviations.weekdays.tue"),
+      t("timeUnits.abbreviations.weekdays.wed"),
+      t("timeUnits.abbreviations.weekdays.thu"),
+      t("timeUnits.abbreviations.weekdays.fri"),
+      t("timeUnits.abbreviations.weekdays.sat"),
+      t("timeUnits.abbreviations.weekdays.sun"),
     ],
     ml: t("measuringUnits.ml"),
   };

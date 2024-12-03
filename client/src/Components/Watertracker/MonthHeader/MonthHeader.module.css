@@ -1,0 +1,230 @@
+.month-controls__wrapper {
+  background: #74ebd5;
+  background: -webkit-linear-gradient(to right, #acb6e5, #74ebd5);
+  background: linear-gradient(to right, #acb6e5, #74ebd5);
+  box-shadow: 0 0.1rem 0.1rem 0 rgba(60, 64, 67, 0.3),
+    0 0.1rem 0.2rem 0.1rem rgba(60, 64, 67, 0.15);
+  border-radius: 0.5rem;
+  margin: 0;
+}
+
+.month-controls-container {
+  min-height: 26rem;
+  padding: 1.15rem 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.buttons-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.button {
+  padding: 1rem 0.25rem;
+  cursor: pointer;
+  width: 15rem;
+}
+
+.buttons-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}
+
+.button-output {
+  border: 0.1rem solid rgba(217, 228, 234, 1);
+  border-radius: 0.25rem;
+  font-size: 1rem;
+  font-weight: 400;
+  color: rgba(77, 77, 77, 0.8);
+  padding: 0.5rem 0;
+  text-align: center;
+  margin-top: 1.5rem;
+}
+
+.warning-message {
+  font-size: 1rem;
+  text-align: center;
+  margin-top: 0.25rem;
+  height: 1.5rem;
+}
+
+.header-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 0;
+}
+
+.header {
+  /* if you change size or spacing here, check subheader too */
+  font-size: 1.5rem;
+  font-weight: 450;
+  color: rgba(77, 77, 77, 0.8);
+  text-align: center;
+}
+.sub-header {
+  /* if you change size or spacing here, check header too */
+  font-size: 1.125rem;
+  font-weight: 400;
+  color: rgba(77, 77, 77, 0.8);
+  text-align: center;
+  margin-top: 1.9rem;
+}
+
+.description {
+  position: relative;
+  font-size: 1rem;
+  font-weight: 450;
+  color: rgba(77, 77, 77, 0.8);
+  margin: 0.5rem 0 0 1rem;
+  width: 100%;
+  padding: 1rem 0 1rem 0.5rem;
+}
+
+/** top line to mark the border of accordion */
+.description::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: calc(100%);
+  height: 0.125rem;
+  border-radius: 25%;
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/** bottom line to mark the border of accordion */
+.description::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: calc(100%);
+  height: 0.125rem;
+  border-radius: 25%;
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.extended-stats {
+  font-size: 1rem;
+  color: rgba(77, 77, 77, 0.8);
+  font-weight: 400;
+}
+
+.list__background {
+  position: relative;
+  color: rgba(77, 77, 77, 0.8);
+  margin: 0.75rem;
+  background-color: rgba(222, 239, 239, 0.34);
+  border-top: 0.25rem solid transparent;
+  border-bottom: 0.25rem solid transparent;
+  border-radius: 0.5rem;
+}
+
+ul.list {
+  font-size: 1rem;
+  color: rgba(77, 77, 77, 0.8);
+  font-weight: 400;
+  margin: 0 0.25rem;
+}
+
+li.list-item {
+  padding: 0.5rem 1rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.legend-container {
+  position: relative;
+  height: 18rem;
+  margin: 0.5rem;
+}
+
+/** 
+a line on the right side for legend container to make clear the way to scroll
+*/
+.legend-container::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0.325rem;
+  width: 0.01rem;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.15);
+}
+
+.list-item__type {
+  margin-right: 0.5rem;
+}
+
+div.accordion {
+  background-color: transparent;
+  box-shadow: none;
+  border-top: unset;
+  padding: 1rem 0;
+}
+
+.icon {
+  height: 1.5rem;
+  width: 1.5rem;
+  fill: rgb(117, 117, 117);
+}
+
+.circle {
+  height: 2.125rem;
+  width: 2.125rem;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media (max-width: 62em) {
+  .buttons-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+  }
+  .month-controls__wrapper {
+    margin: 0.5rem 0.5rem 0 0.5rem;
+  }
+}
+
+@media (max-width: 48em) {
+  .modal-wrapper {
+    border-radius: 0;
+    width: 100%;
+  }
+}
+
+/** 37.48em = 599px */
+@media (max-width: 37.48em) {
+  .header-container {
+    margin-top: 1.25rem;
+  }
+  .month-controls-container {
+    padding: 0;
+  }
+  .month-controls__wrapper {
+    margin: 0.5rem 0.5rem 0 0.5rem;
+  }
+  li.list-item {
+    padding: 0.5rem 0.75rem 0.5rem 0.5rem;
+  }
+  .legend-container {
+    margin: 0.125rem 0 0.125rem 0.125rem;
+  }
+}

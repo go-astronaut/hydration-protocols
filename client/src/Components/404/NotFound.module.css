@@ -6,13 +6,14 @@
   align-items: center;
 }
 
-h1.header {
+.header {
   font-size: 5rem;
   line-height: 4.25rem;
   color: rgba(77, 77, 77, 0.8);
 }
 
-h3.sub-header {
-  font-size: 2.5rem;
+.sub-header {
+  font-size: 1.25rem;
   color: rgba(77, 77, 77, 0.5);
+  margin: 2rem 0;
 }

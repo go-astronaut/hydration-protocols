@@ -15,7 +15,7 @@ function formatStringToDate(date: string, formatValue: DateFormat) {
  * date to specific formated date string
  * @param date date object to convert
  * @param formatValue format
- * @returns formated string day value
+ * @returns formated string date value
  */
 function formatDateToString(date: Date, formatValue: DateFormat) {
   return moment(date).format(formatValue).toString();

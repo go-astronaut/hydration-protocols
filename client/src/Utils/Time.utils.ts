@@ -3,6 +3,53 @@ import { DateFormat } from "../Types/Global.types";
 import { Month } from "../Types/WaterTracker.types";
 
 /**
+ * Get month key/name from month index.
+ * @param monthIndex - numbers 0 - 11
+ * @example // get january translation
+ * const january = t(`months.${getMonthKey(0)}`)
+ */
+function getMonthKey(monthIndex: number) {
+  const monthArray = [
+    "january",
+    "february",
+    "march",
+    "april",
+    "may",
+    "june",
+    "july",
+    "august",
+    "september",
+    "october",
+    "november",
+    "december",
+  ];
+  return monthArray[monthIndex];
+}
+
+/**
+ * Get short weekday name from index day index.
+ * @param index number 0 - 6
+ * @returns short weekday name
+ */
+function convertWeek(index: number) {
+  const weekdayArr = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  return weekdayArr[index];
+}
+
+/**
+ * Get week number based on date target.
+ * @param date target date
+ * @returns number between 1 - 53
+ */
+function getNumberOfWeek(date: Date) {
+  const startDate = new Date(`1 January ${date.getFullYear()}`);
+  const days = Math.floor(
+    (date.getTime() - startDate.getTime()) / (24 * 60 * 60 * 1000)
+  );
+  return Math.ceil(days / 7) + 1;
+}
+
+/**
  * Convert date object to formated string.
  */
 function formatDateToString(date: Date, formatValue: DateFormat) {
@@ -106,6 +153,9 @@ function changeDateFormat(date: string, from: DateFormat, to: DateFormat) {
 }
 
 export {
+  getMonthKey,
+  convertWeek,
+  getNumberOfWeek,
   formatDateToString,
   formatStringToDate,
   getWeekdayIndex,

@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import { useScreenWidth } from "../../../Providers/ScreenWidth";
+import { useScreenWidth } from "../../../../Providers/ScreenWidth";
 import { useTranslation } from "react-i18next";
 import {
   formatStringToDate,

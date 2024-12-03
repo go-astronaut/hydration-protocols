@@ -22,7 +22,6 @@ async function getDailyGoal(date: Date, uid: string) {
     }
     return null;
   } catch (error) {
-    console.log(error);
     return null;
   }
 }

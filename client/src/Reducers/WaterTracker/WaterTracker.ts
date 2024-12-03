@@ -4,17 +4,10 @@ import { reducers } from "./Reducers.utils";
 import * as asyncThunks from "./WaterTracker.thunks";
 import * as utils from "./WaterTracker.utils";
 import * as types from "../../Types/WaterTracker.types";
-import * as vars from "../../Constants";
 
 // setting initial state
 const initialState: types.State = {
   controls: { amount: null, goal: null, type: null },
-  timeTraverse: {
-    year: vars.CURRENT_YEAR,
-    month: vars.CURRENT_MONTH,
-  },
-  selectedMonth: vars.CURRENT_MONTH,
-  selectedYear: vars.CURRENT_YEAR,
 
   // show hourly activity or current week
   hourlyActivity: false,
@@ -111,21 +104,30 @@ const WaterTracker = createSlice({
         extraReducers.handleControlsUpdate
       )
       .addCase(asyncThunks.setControlValues.rejected, utils.setErrorState);
+    // Set control values: amount and type
+    builder
+      .addCase(
+        asyncThunks.setControlsAmountAndType.pending,
+        utils.setLoadingState
+      )
+      .addCase(
+        asyncThunks.setControlsAmountAndType.fulfilled,
+        extraReducers.setAmountAndType
+      )
+      .addCase(
+        asyncThunks.setControlsAmountAndType.rejected,
+        utils.setErrorState
+      );
   },
 });
 
 export const {
   setLoading,
-  setTimeTraverse,
-  setSelectedMonth,
-  setSelectedYear,
   setDrinkAmount,
   setControls,
   setContentIsLoading,
   setTodaysGoalInput,
-  resetState,
   setHourlyActivity,
-  setInitialized,
 } = WaterTracker.actions;
 export default WaterTracker;
 

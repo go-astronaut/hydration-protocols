@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "./Auth";
 import { useEffect } from "react";
-import RoutesValues from "../Routes/Routes.enums";
+import RoutesValues from "../Routes/Routes.values";
 
 /**
  * wait for user and redirect to protected route if signed in.
@@ -11,9 +11,9 @@ const useRedirectToProtected = () => {
   const { currentUser } = useAuth();
   const navigate = useNavigate();
 
-  //  redirect to current month page if user is signed in
+  //  redirect to tracker page if the user is signed in
   useEffect(() => {
-    if (currentUser) navigate(RoutesValues.currentMonth);
+    if (currentUser) navigate(RoutesValues.tracker);
   }, [currentUser, navigate]);
 };
 

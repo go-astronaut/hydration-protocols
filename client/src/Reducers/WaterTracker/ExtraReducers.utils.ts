@@ -5,6 +5,7 @@ import {
   getTimeNavigationIndexes,
 } from "../../Utils/Time.utils";
 import * as types from "../../Types/WaterTracker.types";
+import { ControlKeys } from "../../Constants";
 
 const extraReducers = {
   /**
@@ -30,6 +31,7 @@ const extraReducers = {
     const day = action.payload;
     const month = state.month;
     if (day && month) {
+      // Update the day data
       utils.updateDayOfMonth(month, day);
     }
   },
@@ -58,6 +60,22 @@ const extraReducers = {
       }
     }
   },
+
+  /**
+   * Set control values: type and amount
+   */
+  setAmountAndType: (
+    state: types.State,
+    action: PayloadAction<types.Controls | null>
+  ) => {
+    state.loading = false;
+    const payload = action.payload;
+    if (payload?.amount && payload?.type !== null) {
+      state.controls.amount = payload.amount;
+      state.controls.type = payload.type;
+    }
+  },
+
   /**
    * set control value based on control type
    */
@@ -70,7 +88,19 @@ const extraReducers = {
     if (payload) {
       const controlValueType = payload.controlValueType;
       const value = payload.value;
-      state.controls[controlValueType] = value;
+
+      // Check for type of control value and update it
+      switch (controlValueType) {
+        case ControlKeys.amount:
+          state.controls.amount = +value;
+          break;
+        case ControlKeys.goal:
+          state.controls.goal = +value;
+          break;
+        case ControlKeys.type:
+          state.controls.type = value.toString();
+          break;
+      }
     }
   },
   /**

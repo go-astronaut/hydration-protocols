@@ -1,0 +1,47 @@
+.progress-bar {
+  position: relative;
+  width: 12rem;
+  height: 12rem;
+  border-radius: 50%;
+  margin: 0;
+}
+
+.text-numbers-bottom {
+  font-size: 1.25rem;
+  line-height: 1.5rem;
+}
+
+.message-wrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: rgb(77, 77, 77);
+  font-weight: 350;
+  text-align: center;
+  background-color: white;
+  border-radius: 50%;
+  width: 9.25rem;
+  height: 9.25rem;
+}
+
+.text-numbers-top {
+  font-size: 2.5rem;
+  line-height: 2.5rem;
+}
+
+.chart-container {
+  width: 17rem;
+  height: 17rem;
+  position: relative;
+}
+
+.skeleton-container {
+  height: 17rem;
+  padding-top: 2.25rem;
+}
+
+.message-container {
+  padding-top: 2.5rem;
+  border-radius: 50%;
+}

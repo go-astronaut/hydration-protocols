@@ -1,6 +1,6 @@
 .watertracker_day-controls-item {
   position: relative;
-  width: 100%;
+  width: 21rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -8,8 +8,8 @@
 
 .button {
   position: absolute;
-  width: 2.25rem;
-  height: 2.25rem;
+  width: 2.5rem;
+  height: 2.5rem;
   border-radius: 50%;
   background: rgba(57, 57, 57, 0.9);
   display: flex;
@@ -84,8 +84,8 @@ button:hover {
 
 @media (max-width: 23.375em) {
   .button {
-    width: 2.25rem;
-    height: 2.25rem;
+    width: 2.5rem;
+    height: 2.5rem;
   }
 
   .button .edit-icon {
@@ -106,5 +106,9 @@ button:hover {
 
   .right {
     right: 2.75rem;
+  }
+
+  .watertracker_day-controls-item {
+    width: 17rem;
   }
 }

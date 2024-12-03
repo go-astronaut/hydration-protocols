@@ -1,9 +1,11 @@
 import React from "react";
 import { Grid, Skeleton } from "@mui/material";
 import { useSelector } from "react-redux";
-import { RootState } from "../../../../Reducers/Store";
-import classes from "./Statistics.module.css";
 import { useTranslation } from "react-i18next";
+import { RootState } from "../../../../Reducers/Store";
+import { useScreenWidth } from "../../../../Providers/ScreenWidth";
+import { BREAKPOINT_SLIDER } from "../Day/Charts/Charts.constants";
+import classes from "./Statistics.module.css";
 
 interface StatisticsProps {
   max: number | null;
@@ -20,17 +22,20 @@ const Statistics: React.FC<StatisticsProps> = ({
   daysInTotal,
   goalsReached,
 }) => {
+  // Get screen width for responsive design
+  const { screenWidth } = useScreenWidth();
+
+  // Get loading states from redux
   const { contentIsLoading, initialLoading } = useSelector(
     (state: RootState) => state.waterTracker
   );
 
-  // get translations
+  // Get translations
   const { t } = useTranslation();
   const translations = {
     noData: t("statistics.noData"),
     ml: t("measuringUnits.ml"),
     max: t("statistics.max"),
-    average: t("statistics.average"),
     of: t("statistics.of"),
     goals: t("statistics.goals"),
     daysLeft: t("statistics.daysLeft"),
@@ -39,11 +44,11 @@ const Statistics: React.FC<StatisticsProps> = ({
 
   const isLoading = contentIsLoading || initialLoading;
 
-  // skeleton for text
+  // Skeleton for text
   const textSkeleton = <Skeleton variant="text" width={100} />;
   const noData = <span>{translations.noData}</span>;
 
-  // display text if month stats are available otherwise show skeleton
+  // Display text if month stats are available otherwise show skeleton
   const maxTextEl = max ? (
     <div>
       <span> {`${translations.max} `}</span>
@@ -54,13 +59,12 @@ const Statistics: React.FC<StatisticsProps> = ({
     noData
   );
 
-  // display skeleton if content is loading otherwise show text
+  // Display skeleton if content is loading otherwise show text
   const maxEl = isLoading ? textSkeleton : maxTextEl;
 
-  // display text if month stats are available otherwise show no data
+  // Display text if month stats are available otherwise show no data
   const averageTextEl = average ? (
     <div>
-      <span>{`${translations.average} `}</span>
       <span className={`${classes["highlight"]}`}>{average}</span>
       <span>{` ${translations.ml}`}</span>
     </div>
@@ -68,12 +72,12 @@ const Statistics: React.FC<StatisticsProps> = ({
     noData
   );
 
-  // display skeleton if content is loading otherwise show text
+  // Display skeleton if content is loading otherwise show text
   const averageEl =
     contentIsLoading || initialLoading ? textSkeleton : averageTextEl;
 
-  // daysLeft === 0 is a past week
-  // daysLeft === -1 || !daysLeft is either a future week or no data status
+  // DaysLeft === 0 is a past week
+  // DaysLeft === -1 || !daysLeft is either a future week or no data status
   const daysLeftContent =
     daysLeft === 0 || daysLeft === -1 ? (
       <span>{`${daysLeft === 0 ? translations.finished : ""}${
@@ -86,15 +90,15 @@ const Statistics: React.FC<StatisticsProps> = ({
       </div>
     );
 
-  // display text if month stats are available otherwise show skeleton
+  // Display text if month stats are available otherwise show skeleton
   const daysLeftTextEl =
     daysLeft !== null && daysInTotal ? daysLeftContent : noData;
 
-  // display skeleton if content is loading otherwise show text
+  // Display skeleton if content is loading otherwise show text
   const daysLeftEl =
     contentIsLoading || initialLoading ? textSkeleton : daysLeftTextEl;
 
-  // display text if month stats are available otherwise show skeleton
+  // Display text if month stats are available otherwise show skeleton
   const finishedTextEl =
     goalsReached !== null && daysInTotal ? (
       <div>
@@ -107,17 +111,22 @@ const Statistics: React.FC<StatisticsProps> = ({
       noData
     );
 
-  // display skeleton if content is loading otherwise show text
+  // Display skeleton if content is loading otherwise show text
   const finishedEl =
     contentIsLoading || initialLoading ? textSkeleton : finishedTextEl;
 
+  // Conditional class for right borders on larger screens
+  const borderClass =
+    screenWidth > BREAKPOINT_SLIDER ? classes["border-right"] : "";
+
   return (
-    <div className={`text-center pb-4`}>
+    <div className={`${classes["statistics-container"]}`}>
       <Grid container>
         <Grid item sm={3} xs={6}>
-          <div className={`${classes["info"]}`}>
+          <div className={`${classes["info"]} ${borderClass}`}>
             <div className={classes["circle"]}>
               <svg
+                className={`${classes["icon"]}`}
                 version="1.1"
                 xmlns="http://www.w3.org/2000/svg"
                 x="0px"
@@ -138,9 +147,27 @@ const Statistics: React.FC<StatisticsProps> = ({
           </div>
         </Grid>
         <Grid item sm={3} xs={6}>
-          <div className={`${classes["info"]}`}>
+          <div className={`${classes["info"]} ${borderClass}`}>
             <div className={classes["circle"]}>
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+              <svg
+                className={`${classes["icon"]}`}
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 512 512"
+              >
+                <path d="M256 0a256 256 0 1 1 0 512A256 256 0 1 1 256 0zM232 120l0 136c0 8 4 15.5 10.7 20l96 64c11 7.4 25.9 4.4 33.3-6.7s4.4-25.9-6.7-33.3L280 243.2 280 120c0-13.3-10.7-24-24-24s-24 10.7-24 24z" />
+              </svg>
+            </div>
+            {daysLeftEl}
+          </div>
+        </Grid>
+        <Grid item sm={3} xs={6}>
+          <div className={`${classes["info"]} ${borderClass}`}>
+            <div className={classes["circle"]}>
+              <svg
+                className={`${classes["icon"]}`}
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 576 512"
+              >
                 <path d="M384 160c-17.7 0-32-14.3-32-32s14.3-32 32-32l160 0c17.7 0 32 14.3 32 32l0 160c0 17.7-14.3 32-32 32s-32-14.3-32-32l0-82.7L342.6 374.6c-12.5 12.5-32.8 12.5-45.3 0L192 269.3 54.6 406.6c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3l160-160c12.5-12.5 32.8-12.5 45.3 0L320 306.7 466.7 160 384 160z" />
               </svg>
             </div>
@@ -150,17 +177,11 @@ const Statistics: React.FC<StatisticsProps> = ({
         <Grid item sm={3} xs={6}>
           <div className={`${classes["info"]}`}>
             <div className={classes["circle"]}>
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-                <path d="M256 0a256 256 0 1 1 0 512A256 256 0 1 1 256 0zM232 120l0 136c0 8 4 15.5 10.7 20l96 64c11 7.4 25.9 4.4 33.3-6.7s4.4-25.9-6.7-33.3L280 243.2 280 120c0-13.3-10.7-24-24-24s-24 10.7-24 24z" />
-              </svg>
-            </div>
-            {daysLeftEl}
-          </div>
-        </Grid>
-        <Grid item sm={3} xs={6}>
-          <div className={`${classes["info"]}`}>
-            <div className={classes["circle"]}>
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+              <svg
+                className={`${classes["icon"]}`}
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 448 512"
+              >
                 <path d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z" />
               </svg>
             </div>

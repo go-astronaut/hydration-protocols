@@ -5,7 +5,7 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { isValidEmail } from "../Authentication.utils";
 import { setEmail, setPassword } from "../../../Reducers/User/User";
-import RoutesValues from "../../../Routes/Routes.enums";
+import RoutesValues from "../../../Routes/Routes.values";
 import { RootState } from "../../../Reducers/Store";
 
 type Margin = "normal" | "none" | "dense" | undefined;
@@ -78,7 +78,7 @@ const useSignIn = () => {
           setErrorMessage(false);
           dispatch(setEmail(""));
           dispatch(setPassword(""));
-          navigate(RoutesValues.currentMonth);
+          navigate(RoutesValues.tracker);
         } else {
           setErrorMessage(true);
         }

@@ -17,6 +17,9 @@
   border-radius: 0.5rem;
   background: #a7d1e7;
   margin: 0;
+  box-shadow: 0 0.1rem 0.1rem 0 rgba(60, 64, 67, 0.3),
+    0 0.1rem 0.2rem 0.1rem rgba(60, 64, 67, 0.15);
+  min-height: 26rem;
 }
 
 .container-title {
@@ -27,7 +30,7 @@
 }
 
 .title {
-  font-size: 1.125rem;
+  font-size: 1.25rem;
   font-weight: 400;
   text-align: center;
   color: rgba(77, 77, 77, 0.8);
@@ -51,9 +54,16 @@
   }
 }
 
+/** 37.48em = 599px */
+@media (max-width: 37.48em) {
+  .container {
+    min-height: 30.5rem;
+  }
+}
+
 /** 25em = 400px */
 @media (max-width: 25em) {
   .title {
-    font-size: 0.925rem;
+    font-size: 1rem;
   }
 }

@@ -13,7 +13,7 @@ import { resetLastDrink } from "../../../../Reducers/WaterTracker/WaterTracker.t
 import { ResetLastDrink } from "../../../../Types/WaterTracker.types";
 import { TODAY } from "../../../../Constants";
 
-const useAmountController = () => {
+const useTodayController = () => {
   const dispatch = useDispatch<AppDispatch>();
   const { currentUser } = useAuth();
   const { controls, month, initialLoading } = useSelector(
@@ -150,4 +150,4 @@ const useAmountController = () => {
   };
 };
 
-export { useAmountController };
+export { useTodayController };

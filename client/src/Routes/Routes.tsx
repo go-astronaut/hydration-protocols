@@ -2,7 +2,7 @@ import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import {
   CurrentMonthPage,
   DayPage,
-  TimeTraversePage,
+  ArchivePage,
 } from "../Pages/WaterTracker.pages";
 import ProtectedRoute from "./Protected";
 import {
@@ -11,7 +11,7 @@ import {
   SignInPage,
   SignUpPage,
 } from "../Pages/App.pages";
-import RoutesValues from "./Routes.enums";
+import RoutesValues from "./Routes.values";
 
 /**
  * App Routes Component
@@ -21,15 +21,19 @@ const AppRoutes: React.FC = () => {
     <Router>
       <Routes>
         <Route
-          path={RoutesValues.monthTraverse}
-          element={<ProtectedRoute element={<TimeTraversePage />} />}
+          path={RoutesValues.archiveMonth}
+          element={<ProtectedRoute element={<ArchivePage />} />}
         />
         <Route
-          path={RoutesValues.currentMonth}
+          path={RoutesValues.tracker}
           element={<ProtectedRoute element={<CurrentMonthPage />} />}
         />
         <Route
-          path={RoutesValues.date}
+          path={RoutesValues.trackerDayDynamic}
+          element={<ProtectedRoute element={<DayPage />} />}
+        />
+        <Route
+          path={RoutesValues.archiveDay}
           element={<ProtectedRoute element={<DayPage />} />}
         />
         <Route path={RoutesValues.root} element={<LandingPage />} />

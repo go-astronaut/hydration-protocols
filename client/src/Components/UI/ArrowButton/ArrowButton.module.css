@@ -1,0 +1,86 @@
+.arrow {
+  cursor: pointer;
+  position: relative;
+  transition: transform 0.3s;
+}
+
+.arrow span {
+  opacity: 0;
+  transition: opacity 0.3s 0s;
+  padding: 0 0.5em;
+}
+
+.arrow.open span {
+  opacity: 1;
+  transition: opacity 0.3s 0.1s;
+}
+
+.arrow.open span {
+  opacity: 1;
+  transition: opacity 0.3s 0.1s;
+}
+
+.arrow:before {
+  content: "";
+  display: block;
+  border: solid #fff;
+  border-width: 2px 2px 0 0;
+  position: absolute;
+  top: 0.5rem;
+  width: 1rem;
+  height: 1rem;
+}
+
+.arrow.arrow--left:before {
+  transform: rotate(-135deg);
+  right: 0;
+  transition: right 0.3s 0.2s;
+}
+
+.arrow.open.arrow--left.arrow:before {
+  right: 70%;
+  transition: right 0.3s;
+}
+
+.arrow.arrow--right span {
+  display: block;
+  text-align: left;
+  padding-top: 0.25rem;
+  margin-left: 1rem;
+}
+
+.arrow.arrow--left span {
+  display: block;
+  text-align: right;
+  padding-top: 0.25rem;
+  margin-right: 1rem;
+}
+
+.arrow.arrow--right:before {
+  left: 0;
+  transform: rotate(45deg);
+  transition: left 0.3s 0.2s;
+}
+
+.arrow.arrow--bottom:before {
+  left: 0;
+  transform: rotate(135deg);
+}
+
+.arrow.arrow--top:before {
+  left: 0rem;
+  transform: rotate(-45deg);
+}
+
+.arrow.open.arrow--right:before {
+  left: 70%;
+  transition: left 0.3s;
+}
+
+.arrow {
+  transform: none;
+}
+
+.arrow span {
+  font-size: 0.85rem;
+}

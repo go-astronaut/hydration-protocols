@@ -2,7 +2,7 @@ import { useMenu } from "./Menu.hook";
 import { ToggleButton, ToggleButtonGroup } from "@mui/material";
 import Drawer from "@mui/material/Drawer";
 import Divider from "@mui/material/Divider";
-import RoutesValues from "../../Routes/Routes.enums";
+import RoutesValues from "../../Routes/Routes.values";
 import classes from "./Menu.module.css";
 
 // width of the menu
@@ -14,36 +14,35 @@ const WIDTH = 320;
 const Menu = () => {
   const menu = useMenu();
 
-  // menu item which navigates to time traverse page
-  const timeTraverseEl =
-    menu.pathname !== RoutesValues.monthTraverse ? (
-      <>
-        <button
-          className={classes["menu-button"]}
-          onClick={menu.navigateToTimeTraverse}
+  // menu item which navigates to archive
+  const archive = !menu.pathname.includes(RoutesValues.archive) ? (
+    <>
+      <button
+        className={classes["menu-button"]}
+        onClick={menu.navigateToArchive}
+      >
+        <svg
+          className={`${classes["icon"]}`}
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 512 512"
         >
-          <svg
-            className={`${classes["icon"]}`}
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 512 512"
-          >
-            <path d="M32 32l448 0c17.7 0 32 14.3 32 32l0 32c0 17.7-14.3 32-32 32L32 128C14.3 128 0 113.7 0 96L0 64C0 46.3 14.3 32 32 32zm0 128l448 0 0 256c0 35.3-28.7 64-64 64L96 480c-35.3 0-64-28.7-64-64l0-256zm128 80c0 8.8 7.2 16 16 16l160 0c8.8 0 16-7.2 16-16s-7.2-16-16-16l-160 0c-8.8 0-16 7.2-16 16z" />
-          </svg>
-          <span>{menu.translations.archive}</span>
-        </button>
-        <Divider />
-      </>
-    ) : (
-      ""
-    );
+          <path d="M32 32l448 0c17.7 0 32 14.3 32 32l0 32c0 17.7-14.3 32-32 32L32 128C14.3 128 0 113.7 0 96L0 64C0 46.3 14.3 32 32 32zm0 128l448 0 0 256c0 35.3-28.7 64-64 64L96 480c-35.3 0-64-28.7-64-64l0-256zm128 80c0 8.8 7.2 16 16 16l160 0c8.8 0 16-7.2 16-16s-7.2-16-16-16l-160 0c-8.8 0-16 7.2-16 16z" />
+        </svg>
+        <span>{menu.translations.archive}</span>
+      </button>
+      <Divider />
+    </>
+  ) : (
+    ""
+  );
 
-  // menu item which navigates to current month page
-  const currentMonthEl =
-    menu.pathname !== RoutesValues.currentMonth ? (
+  // menu item which navigates to tracker page
+  const tracker =
+    menu.pathname !== RoutesValues.tracker ? (
       <>
         <button
           className={classes["menu-button"]}
-          onClick={menu.navigateToCurrentMonth}
+          onClick={menu.navigateToTracker}
         >
           <svg
             className={`${classes["icon"]}`}
@@ -96,8 +95,8 @@ const Menu = () => {
           </svg>
         </button>
         <Divider />
-        {currentMonthEl}
-        {timeTraverseEl}
+        {tracker}
+        {archive}
         <button className={classes["menu-button"]} onClick={menu.handleLogout}>
           <span className="mr-4">{menu.translations.logout}</span>
           <svg
